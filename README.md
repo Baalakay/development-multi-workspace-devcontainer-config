@@ -1,6 +1,6 @@
-# Blake's Shared Devcontainer Configuration
+Shared Devcontainer Configuration
 
-This repository provides a robust, ready-to-use devcontainer environment for use across multiple projects. It is designed to be symlinked into any project as a shared `.devcontainer` folder, providing a consistent, reproducible setup for Python, React, and more.
+This repository provides a robust, ready-to-use devcontainer environment for use across multiple projects. It is designed to be symlinked into any project as a shared `.devcontainer` folder. 
 
 > **Prerequisite:**
 > You must have [Docker](https://www.docker.com/products/docker-desktop/) and an IDE such as [Cursor](https://www.cursor.so/), [Windsurf](https://windsurf.ai/), or [VS Code](https://code.visualstudio.com/) installed on your local machine before using this template. 
@@ -12,7 +12,7 @@ This repository provides a robust, ready-to-use devcontainer environment for use
 >
 > **IMPORTANT:**
 > This repository is intended to be **symlinked** into each code/project folder as a shared `.devcontainer` folder. **Do not add any project-specific code, onboarding, or workflow details into the folder that contains this .devcontainer folder**
-> - This repo is for global devcontainer configuration only.
+> - This repo (and the local folder you clone it to) is for global devcontainer configuration only.
 > - All project-specific onboarding, code, and workflow documentation should be maintained in the individual project repository/folder.
 > - This ensures a single source of truth for devcontainer setup across all projects, while keeping project code and logic separate.
 
@@ -24,13 +24,14 @@ This repository provides a robust, ready-to-use devcontainer environment for use
 - **Consistent Environments**: All projects use the same Docker, Compose, and feature setup.
 - **Easy Updates**: Update your devcontainer setup in one place for all projects.
 - **Per-Project Isolation**: Each project gets its own `.env` and Docker named volumes for dependencies and caches (`.venv`, `frontend/node_modules`, `.mypy_cache`, `.pytest_cache`, `dist/`).
+- These five folders all get stored on the container instead of your local machine (which is ideal), and will be re-created if they don't already exist. The `node_modules` directory is added to any existing frontend folder if it doesn't already exist there (to generate your frontend dependencies with `npm install`). It will not overwrite or delete any existing files in your existing frontend or any other source code elsewhere. These folders can safely be removed and recreated if you want to have the backend dependencies reinstalled (by way of uv creating them in the `.env` from the pyproject.toml), or the frontend dependencies being regenerated (by way of `npm install` generating them in the frontend/node_modules folder).
 
 ---
 
 ## How to Use This Global Devcontainer
 
 1. **Clone this repository somewhere accessible on your machine:**
-cd to the path where you want the shared .devcontainer folder and configs stored (e.g. "development-devcontainer" is used below but choose your own name)
+> cd to the path where you want the shared .devcontainer folder and configs stored (e.g. "development-devcontainer" is used below but choose your own name)
    ```sh
    cd /Users/Blake/Documents/projects/development-devcontainer
    git clone https://github.com/Baalakay/development-devcontainer-shared-config-template .
@@ -51,20 +52,9 @@ cd to the path where you want the shared .devcontainer folder and configs stored
 ---
 
 ## How It Works
-- Each project gets its own `.devcontainer/.env` and Docker named volumes for dependencies and caches: `.venv`, `frontend/node_modules`, `.mypy_cache`, `.pytest_cache`, and `dist`.
+- Again, each project gets its own `.devcontainer/.env` and Docker named volumes for dependencies and caches: `.venv`, `frontend/node_modules`, `.mypy_cache`, `.pytest_cache`, and `dist`.
 - The `set-project-root.sh` script (run via `initializeCommand` in `devcontainer.json`) ensures the correct project context is set before the container is built.
 - All devcontainer config, Dockerfiles, and scripts are managed centrally in this repo.
-
----
-
-## Updating the Global Devcontainer
-- To update the devcontainer config for all projects, update this repository and pull changes in each project as needed.
-- Communicate breaking changes to all project maintainers.
-
----
-
-## For Project Maintainers
-- Reference this repository in your project README as a prerequisite for devcontainer setup.
 
 ---
 
