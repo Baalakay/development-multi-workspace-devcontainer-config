@@ -11,7 +11,8 @@ services:
         VARIANT: 3.12-bookworm
         ACTIVE_PROJECT: ${ACTIVE_PROJECT}
     volumes:
-      - ..:/workspace:cached
+     - ../../${ACTIVE_PROJECT}:/workspaces/${ACTIVE_PROJECT}:cached
+     # - ${PROJECT_ROOT}:/workspaces/${ACTIVE_PROJECT}:cached
     command: sleep infinity
     cap_add:
       - SYS_PTRACE

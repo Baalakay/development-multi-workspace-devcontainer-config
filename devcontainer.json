@@ -1,4 +1,5 @@
 {
+    "initializeCommand": "./.devcontainer/set-project-root.sh",
     "name": "${localWorkspaceFolderBasename}",
     "dockerComposeFile": "docker-compose.yml",
     "service": "app",
@@ -6,6 +7,7 @@
     "remoteUser": "vscode",
     "remoteEnv": {
         "ACTIVE_PROJECT": "${localWorkspaceFolderBasename}",
+        "PROJECT_ROOT": "${localWorkspaceFolder}",
         "LOCAL_WORKSPACE_FOLDER": "/workspaces/${localWorkspaceFolderBasename}",
         "OPENAI_API_KEY": "${localEnv:OPENAI_API_KEY}",
         "ANTHROPIC_API_KEY": "${localEnv:OPENAI_API_KEY}",
@@ -55,8 +57,7 @@
         "type=volume,source=frontend_node_modules_${localWorkspaceFolderBasename},target=/workspaces/${localWorkspaceFolderBasename}/frontend/node_modules",
 
         // local folders for bind mounts into the container
-        "source=/Users/blake/Documents/development-workspace/.devcontainer,target=/workspaces/template/.devcontainer,type=bind,consistency=cached",
-        //"source=${localWorkspaceFolder}/../.devcontainer,target=${localWorkspaceFolder}/.devcontainer,type=bind,consistency=cached",
+        "source=/Users/blake/Documents/development-workspace/.devcontainer,target=/workspaces/${localWorkspaceFolderBasename}/.devcontainer,type=bind,consistency=cached",
         "source=${localEnv:HOME}${localEnv:USERPROFILE}/Documents/devcontainer_shared,target=/home/vscode/devcontainer_shared,type=bind,consistency=cached",
         "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
         "source=${localEnv:HOME}${localEnv:USERPROFILE}/.zsh_history,target=/home/vscode/.zsh_history,type=bind",
