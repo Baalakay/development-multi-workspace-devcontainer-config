@@ -58,4 +58,6 @@ This repository provides a robust, ready-to-use devcontainer environment for use
 
 ---
 
+See https://github.com/Baalakay/development-devcontainer-project-template for a ready-to-go Python/React/TypeScript/TailwindCSS project template that works with this devcontainer.
+
 For more details, see the [official devcontainers documentation](https://containers.dev/) and [VS Code documentation on devcontainers](https://code.visualstudio.com/docs/devcontainers/containers). 
