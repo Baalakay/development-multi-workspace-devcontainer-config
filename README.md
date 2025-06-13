@@ -34,9 +34,9 @@ This repository provides a robust, ready-to-use devcontainer environment for use
 > cd to the path where you want the shared .devcontainer folder and configs stored (e.g. "development-devcontainer" is used below but choose your own name)
    ```sh
    cd /Users/Blake/Documents/projects/development-devcontainer
-   git clone https://github.com/Baalakay/development-devcontainer-shared-config-template .
+   git clone https://github.com/Baalakay/development-devcontainer-shared-config-template .devcontainer
    ```
-2. **In each project, symlink the `.devcontainer` directory to this global repo:**
+2. **In each project folder (not the above folder), symlink the `.devcontainer` directory to this global repo:**
    ```sh
    cd /path/to/your/project/folder
    ln -s ~/development-devcontainer .devcontainer
